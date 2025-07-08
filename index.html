@@ -1,196 +1,857 @@
-<div class="portada-global">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans:wght@300;400;700&display=swap');
-    
-    :root {
-      --color-primario: #E63946;    /* Azul vibrante */
-      --color-secundario: #FF758F;  /* Azul claro */
-      --fondo: #FFF0F3;             /* Fondo azul suave */
-      --texto: #2D3748;             /* Azul oscuro para texto */
-      --decoracion: #E63946;        /* Azul decorativo */
-    }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 MCC Outline Generator Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      overflow-y: hidden;
-      margin: 0;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
 
-    .portada-global {
-      background:
-      color: var(--texto);
-      text-align: center;
-      padding: 6rem 2rem;
-      font-family: 'Open Sans', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
 
-    .portada-global::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background;
-      z-index: 0;
-    }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-    .portada-global h1 {
-      font-size: clamp(2.8rem, 8vw, 4.5rem);
-      color: var(--color-primario);
-      margin: 0 auto 1.5rem;
-      line-height: 1.1;
-      max-width: 900px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: -0.03em;
-      position: relative;
-      z-index: 1;
-    }
+        .header h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
 
-    .portada-global p {
-      font-size: clamp(1.2rem, 2vw, 1.4rem);
-      line-height: 1.7;
-      margin: 0 auto 3rem;
-      max-width: 700px;
-      padding: 0 1rem;
-      font-weight: 400;
-      opacity: 0.9;
-      position: relative;
-      z-index: 1;
-    }
+        .header p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
 
-    .botones-accion {
-      display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-    .boton-global {
-      background: var(--color-primario);
-      color: white !important;
-      padding: 1.2rem 3rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 2px solid var(--color-secundario);
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
+        .feature {
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
 
-    .boton-global::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: all 0.6s;
-    }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
 
-    .boton-global:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
-      background: #1D4ED8;
-    }
+        .upload-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px dashed #dee2e6;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
 
-    .boton-global:hover::before {
-      left: 100%;
-    }
+        .upload-section:hover {
+            border-color: #4ecdc4;
+            background: #f0fdfc;
+        }
 
-    .decoracion-global {
-      width: 150px;
-      height: 4px;
-      background:
-      margin: 2.5rem auto;
-      border-radius: 2px;
-      opacity: 0.8;
-      position: relative;
-      animation: flotar 3s ease-in-out infinite;
-    }
+        .upload-section.dragover {
+            border-color: #4ecdc4;
+            background: #e6fffa;
+            transform: scale(1.02);
+        }
 
-    @keyframes flotar {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
 
-    .elemento-destacado {
-      position: absolute;
-      opacity: 0.1;
-      z-index: 0;
-    }
+        .upload-btn {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
 
-    .elemento-destacado.mundo {
-      width: 80vw;
-      height: 80vw;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%232563EB" stroke-width="0.5"><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20M12 2v20"/></svg>');
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+        }
 
-    @media (max-width: 768px) {
-      .portada-global {
-        padding: 5rem 1.5rem;
-      }
-      
-      .boton-global {
-        width: 100%;
-        justify-content: center;
-        padding: 1rem 2rem;
-      }
-      
-      .decoracion-global {
-        margin: 2rem auto;
-      }
-    }
-  </style>
+        .file-input {
+            display: none;
+        }
 
-  <div class="elemento-destacado mundo"></div>
+        .preview-section {
+            background: #2d3748;
+            padding: 30px;
+            border-radius: 15px;
+            color: #e2e8f0;
+            overflow-y: auto;
+            max-height: 500px;
+        }
 
-  <h1>Prevencion del Embarazo en Adolescentes</h1>
-  
-  <div class="decoracion-global"></div>
+        .preview-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
 
-  <p>Información verificada y recursos esenciales para una toma de decisiones informada sobre tu salud sexual y reproductiva.</p>
+        .model-info {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
 
-  <div class="botones-accion">
-    <a href="#estadisticas" class="boton-global" aria-label="Ver estadísticas globales">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 2.5v19M2.5 12h19"/>
-      </svg>
-      Educacion Sexual
-    </a>
-    
-    <a href="#estrategias" class="boton-global" aria-label="Estrategias internacionales">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 6.9 8 11.7z"/>
-      </svg>
-      Apoyo Local
-    </a>
-    
-    <a href="#recursos" class="boton-global" aria-label="Recursos globales">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"/>
-                <path d="M16 8l-8 8M8 8l8 8"/>
-      </svg>
-      Metodos Preventivos
-    </a>
-  </div>
-</div>
+        .model-info h3 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+        }
+
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .stat {
+            background: #2d3748;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #a0aec0;
+        }
+
+        .controls-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .control-group input, .control-group select {
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-group input:focus, .control-group select:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.1);
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slider {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #dee2e6;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4ecdc4;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-value {
+            background: #4ecdc4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .generate-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .results-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #4ecdc4;
+            border-bottom-color: #4ecdc4;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            white-space: pre-wrap;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+        }
+
+        .element-preview {
+            background: #1a202c;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4ecdc4;
+        }
+
+        .element-name {
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 5px;
+        }
+
+        .element-coords {
+            font-size: 0.9rem;
+            color: #a0aec0;
+            font-family: monospace;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 MCC Outline Generator Pro</h1>
+            <p>Carga tu modelo de Blockbench y genera outlines automáticamente</p>
+            <div class="features">
+                <div class="feature">📁 Carga archivos .json</div>
+                <div class="feature">🔧 Genera outline automático</div>
+                <div class="feature">⚡ Configuración avanzada</div>
+                <div class="feature">📦 Descarga completa</div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="main-content">
+            <div class="upload-section" id="uploadSection">
+                <div class="upload-icon">📁</div>
+                <h2>Carga tu modelo de Blockbench</h2>
+                <p>Arrastra y suelta tu archivo .json aquí</p>
+                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                    📂 Seleccionar Archivo
+                </button>
+                <input type="file" id="fileInput" class="file-input" accept=".json" multiple>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                    Soporta: .json de Blockbench, múltiples archivos
+                </p>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-title">📊 Vista Previa del Modelo</div>
+                <div id="modelPreview">
+                    <p style="text-align: center; color: #a0aec0; font-style: italic;">
+                        Carga un archivo para ver la vista previa
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-section">
+            <h2 style="margin-bottom: 20px; color: #495057;">⚙️ Configuración del Outline</h2>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="outlineThickness">Grosor del Outline:</label>
+                    <div class="slider-container">
+                        <input type="range" id="outlineThickness" class="slider" min="1.05" max="2.0" step="0.05" value="1.15">
+                        <div class="slider-value" id="thicknessValue">1.15x</div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="outlineColor">Color del Outline:</label>
+                    <input type="color" id="outlineColor" value="#000000">
+                </div>
+
+                <div class="control-group">
+                    <label for="outlineOpacity">Opacidad del Outline:</label>
+                    <div class="slider-container">
+                        <input type="range" id="outlineOpacity" class="slider" min="0.5" max="1.0" step="0.1" value="1.0">
+                        <div class="slider-value" id="opacityValue">100%</div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="outlineStyle">Estilo del Outline:</label>
+                    <select id="outlineStyle">
+                        <option value="solid">Sólido</option>
+                        <option value="gradient">Gradiente</option>
+                        <option value="glow">Brillo</option>
+                        <option value="rainbow">Arcoíris</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="cosmeticType">Tipo de Cosmético:</label>
+                    <select id="cosmeticType">
+                        <option value="crown">👑 Corona/Sombrero</option>
+                        <option value="glasses">🕶️ Gafas/Máscara</option>
+                        <option value="cape">🦸 Capa</option>
+                        <option value="shoulder">🎯 Hombro</option>
+                        <option value="wings">🦋 Alas</option>
+                        <option value="halo">✨ Halo</option>
+                        <option value="custom">🔧 Personalizado</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="packName">Nombre del Pack:</label>
+                    <input type="text" id="packName" placeholder="Mi Pack MCC" value="MCC Outline Pack">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="generate-btn" id="generateBtn" onclick="generateOutline()" disabled>
+                    🚀 Generar Outline
+                </button>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h2 style="margin-bottom: 20px; color: #495057;">📁 Resultados</h2>
+            
+            <div class="results-tabs">
+                <button class="tab active" onclick="showTab('models')">📦 Modelos</button>
+                <button class="tab" onclick="showTab('textures')">🎨 Texturas</button>
+                <button class="tab" onclick="showTab('pack')">📋 Pack Config</button>
+                <button class="tab" onclick="showTab('commands')">⚡ Comandos</button>
+            </div>
+
+            <div id="models-tab" class="tab-content active">
+                <h3>Modelos Generados</h3>
+                <div id="modelsOutput"></div>
+            </div>
+
+            <div id="textures-tab" class="tab-content">
+                <h3>Configuración de Texturas</h3>
+                <div id="texturesOutput"></div>
+            </div>
+
+            <div id="pack-tab" class="tab-content">
+                <h3>Configuración del Resource Pack</h3>
+                <div id="packOutput"></div>
+            </div>
+
+            <div id="commands-tab" class="tab-content">
+                <h3>Comandos de Minecraft</h3>
+                <div id="commandsOutput"></div>
+            </div>
+
+            <div class="download-grid">
+                <button class="download-btn" onclick="downloadFile('base_model')">📦 Modelo Base</button>
+                <button class="download-btn" onclick="downloadFile('outline_model')">⭕ Modelo Outline</button>
+                <button class="download-btn" onclick="downloadFile('pack_mcmeta')">📋 pack.mcmeta</button>
+                <button class="download-btn" onclick="downloadFile('all_files')">📁 Todos los Archivos</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let loadedModels = [];
+        let currentModel = null;
+        let generatedFiles = {};
+
+        // Configuración de drag and drop
+        const uploadSection = document.getElementById('uploadSection');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadSection.classList.add('dragover');
+        });
+
+        uploadSection.addEventListener('dragleave', () => {
+            uploadSection.classList.remove('dragover');
+        });
+
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadSection.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            handleFiles(files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        // Configuración de sliders
+        const thicknessSlider = document.getElementById('outlineThickness');
+        const thicknessValue = document.getElementById('thicknessValue');
+        const opacitySlider = document.getElementById('outlineOpacity');
+        const opacityValue = document.getElementById('opacityValue');
+
+        thicknessSlider.addEventListener('input', (e) => {
+            thicknessValue.textContent = e.target.value + 'x';
+        });
+
+        opacitySlider.addEventListener('input', (e) => {
+            opacityValue.textContent = Math.round(e.target.value * 100) + '%';
+        });
+
+        function handleFiles(files) {
+            const fileList = Array.from(files);
+            const jsonFiles = fileList.filter(file => file.name.endsWith('.json'));
+            
+            if (jsonFiles.length === 0) {
+                showError('Por favor selecciona archivos .json válidos');
+                return;
+            }
+
+            updateProgress(20);
+            loadedModels = [];
+            
+            Promise.all(jsonFiles.map(file => readFile(file)))
+                .then(results => {
+                    results.forEach((result, index) => {
+                        try {
+                            const model = JSON.parse(result);
+                            loadedModels.push({
+                                name: jsonFiles[index].name,
+                                data: model,
+                                fileName: jsonFiles[index].name.replace('.json', '')
+                            });
+                        } catch (error) {
+                            console.error('Error parsing JSON:', error);
+                            showError(`Error al procesar ${jsonFiles[index].name}: ${error.message}`);
+                        }
+                    });
+                    
+                    if (loadedModels.length > 0) {
+                        currentModel = loadedModels[0];
+                        displayModelPreview(currentModel);
+                        document.getElementById('generateBtn').disabled = false;
+                        updateProgress(50);
+                        showSuccess(`${loadedModels.length} modelo(s) cargado(s) correctamente`);
+                    }
+                });
+        }
+
+        function readFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = reject;
+                reader.readAsText(file);
+            });
+        }
+
+        function displayModelPreview(model) {
+            const preview = document.getElementById('modelPreview');
+            const data = model.data;
+            
+            const elementsCount = data.elements ? data.elements.length : 0;
+            const texturesCount = data.textures ? Object.keys(data.textures).length : 0;
+            const hasDisplay = data.display ? 'Sí' : 'No';
+            
+            preview.innerHTML = `
+                <div class="model-info">
+                    <h3>📊 ${model.name}</h3>
+                    <div class="model-stats">
+                        <div class="stat">
+                            <div class="stat-value">${elementsCount}</div>
+                            <div class="stat-label">Elementos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">${texturesCount}</div>
+                            <div class="stat-label">Texturas</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">${hasDisplay}</div>
+                            <div class="stat-label">Display</div>
+                        </div>
+                    </div>
+                    
+                    ${data.elements ? data.elements.map((element, index) => `
+                        <div class="element-preview">
+                            <div class="element-name">${element.name || `Element ${index + 1}`}</div>
+                            <div class="element-coords">
+                                From: [${element.from ? element.from.join(', ') : 'N/A'}] 
+                                To: [${element.to ? element.to.join(', ') : 'N/A'}]
+                            </div>
+                        </div>
+                    `).join('') : '<p>No hay elementos en este modelo</p>'}
+                </div>
+            `;
+        }
+
+        function generateOutline() {
+            if (!currentModel) {
+                showError('No hay ningún modelo cargado');
+                return;
+            }
+
+            updateProgress(60);
+            
+            const thickness = parseFloat(document.getElementById('outlineThickness').value);
+            const color = document.getElementById('outlineColor').value;
+            const opacity = parseFloat(document.getElementById('outlineOpacity').value);
+            const style = document.getElementById('outlineStyle').value;
+            const type = document.getElementById('cosmeticType').value;
+            const packName = document.getElementById('packName').value;
+
+            try {
+                // Generar modelo outline
+                const outlineModel = createOutlineModel(currentModel.data, thickness, style);
+                
+                // Generar archivos del resource pack
+                generatedFiles = {
+                    baseModel: currentModel.data,
+                    outlineModel: outlineModel,
+                    packMcmeta: createPackMcmeta(packName),
+                    citProperties: createCITProperties(currentModel.fileName, type),
+                    commands: createCommands(currentModel.fileName, type)
+                };
+
+                displayResults();
+                document.getElementById('resultsSection').style.display = 'block';
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+                
+                updateProgress(100);
+                showSuccess('¡Outline generado exitosamente!');
+                
+                setTimeout(() => updateProgress(0), 2000);
+                
+            } catch (error) {
+                showError(`Error al generar outline: ${error.message}`);
+                console.error('Error details:', error);
+            }
+        }
+
+        function createOutlineModel(baseModel, thickness, style) {
+            const outlineModel = JSON.parse(JSON.stringify(baseModel)); // Deep copy
+            
+            // Modificar elementos para crear outline
+            if (outlineModel.elements) {
+                outlineModel.elements = outlineModel.elements.map(element => {
+                    const newElement = { ...element };
+                    
+                    // Calcular nuevas coordenadas escaladas
+                    if (element.from && element.to) {
+                        const centerX = (element.from[0] + element.to[0]) / 2;
+                        const centerY = (element.from[1] + element.to[1]) / 2;
+                        const centerZ = (element.from[2] + element.to[2]) / 2;
+                        
+                        const width = element.to[0] - element.from[0];
+                        const height = element.to[1] - element.from[1];
+                        const depth = element.to[2] - element.from[2];
+                        
+                        const newWidth = width * thickness;
+                        const newHeight = height * thickness;
+                        const newDepth = depth * thickness;
+                        
+                        newElement.from = [
+                            centerX - newWidth / 2,
+                            centerY - newHeight / 2,
+                            centerZ - newDepth / 2
+                        ];
+                        
+                        newElement.to = [
+                            centerX + newWidth / 2,
+                            centerY + newHeight / 2,
+                            centerZ + newDepth / 2
+                        ];
+                    }
+                    
+                    // Cambiar texturas a outline
+                    if (newElement.faces) {
+                        Object.keys(newElement.faces).forEach(face => {
+                            if (newElement.faces[face].texture) {
+                                newElement.faces[face].texture = '#outline';
+                            }
+                        });
+                    }
+                    
+                    return newElement;
+                });
+            }
+            
+            // Cambiar textura a outline
+            if (outlineModel.textures) {
+                outlineModel.textures = {
+                    outline: `item/${currentModel.fileName}_outline`
+                };
+            }
+            
+            // Ajustar display si existe
+            if (outlineModel.display) {
+                Object.keys(outlineModel.display).forEach(key => {
+                    if (outlineModel.display[key].scale) {
+                        outlineModel.display[key].scale = outlineModel.display[key].scale.map(s => s * thickness);
+                    }
+                });
+            }
+            
+            return outlineModel;
+        }
+
+        function createPackMcmeta(packName) {
+            return {
+                pack: {
+                    pack_format: 15,
+                    description: `§6${packName}§r\\n§7Cosméticos con outline estilo MCC§r\\n§8Generado con MCC Outline Generator Pro`
+                }
+            };
+        }
+
+        function createCITProperties(fileName, type) {
+            const itemMap = {
+                crown: 'minecraft:golden_helmet',
+                glasses: 'minecraft:chainmail_helmet',
+                cape: 'minecraft:elytra',
+                shoulder: 'minecraft:leather_chestplate',
+                wings: 'minecraft:elytra',
+                halo: 'minecraft:golden_helmet',
+                custom: 'minecraft:player_head'
+            };
+
+            return `type=item
+items=${itemMap[type] || 'minecraft:player_head'}
+model=item/${fileName}_composite
+nbt.display.Name=*${fileName.replace(/_/g, ' ')}*
+enchantments=unbreaking
+`;
+        }
+
+        function createCommands(fileName, type) {
+            const itemMap = {
+                crown: 'minecraft:golden_helmet',
+                glasses: 'minecraft:chainmail_helmet',
+                cape: 'minecraft:elytra',
+                shoulder: 'minecraft:leather_chestplate',
+                wings: 'minecraft:elytra',
+                halo: 'minecraft:golden_helmet',
+                custom: 'minecraft:player_head'
+            };
+
+            const item = itemMap[type] || 'minecraft:player_head';
+            const displayName = fileName.replace(/_/g, ' ');
+            
+            return [
+                `// Comando para obtener el cosmético base:`,
+                `/give @s ${item}{display:{Name:'{"text":"${displayName}","color":"gold"}'},Enchantments:[{id:"minecraft:unbreaking",lvl:1}],HideFlags:1}`,
+                ``,
+                `// Comando con Custom Model Data:`,
+                `/give @s ${item}{CustomModelData:1,display:{Name:'{"text":"${displayName}","color":"gold"}'},Ench
