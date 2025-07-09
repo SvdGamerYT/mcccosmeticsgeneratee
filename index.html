@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCC Outline Generator Pro</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCC Outline Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 </head>
 <body>
   <div class="container">
-    <h1>🎨 MCC Outline Generator Pro</h1>
-    <p>Sube tu modelo JSON y genera el outline automáticamente</p>
+    <h1>🎨 MCC Outline Generator</h1>
 
-    <input type="file" id="fileInput" accept=".json" />
+    <input type="file" id="fileInput" accept=".json">
 
     <div class="controls">
       <label>Grosor:
-        <input type="range" id="thickness" min="1.05" max="2.0" step="0.05" value="1.15" />
-        <span id="thicknessValue">1.15x</span>
+        <input type="range" id="thickness" min="1" max="2" step="0.05" value="1.1">
       </label>
-      <label>Color:
-        <input type="color" id="color" value="#000000" />
-      </label>
-      <label>Estilo:
-        <select id="style">
-          <option value="solid">Sólido</option>
-          <option value="glow">Brillo</option>
-          <option value="gradient">Gradiente</option>
-        </select>
-      </label>
+      <button id="generateBtn">Generar Outline</button>
     </div>
 
-    <button id="generateBtn">🚀 Generar Outline</button>
+    <h2>Vista 3D:</h2>
+    <div id="preview3D" style="width: 400px; height: 400px;"></div>
 
+    <h2>Resultado:</h2>
     <pre id="output"></pre>
+
+    <button id="downloadZip">📦 Descargar ZIP</button>
   </div>
 
   <script src="script.js"></script>
