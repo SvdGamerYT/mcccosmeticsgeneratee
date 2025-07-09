@@ -4,7 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCC Outline Generator</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #1e1e2f;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+    h1, h2 {
+      color: #4ecdc4;
+    }
+    .controls {
+      margin: 20px 0;
+    }
+    #preview3D {
+      background: #222;
+      border: 2px solid #4ecdc4;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #4ecdc4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    input[type="range"] {
+      width: 100px;
+    }
+  </style>
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.156.0/examples/js/controls/OrbitControls.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
@@ -32,6 +69,97 @@
     <button id="downloadZip">📦 Descargar ZIP</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    let originalModel = null;
+    let outlineModel = null;
+
+    const fileInput = document.getElementById("fileInput");
+    const output = document.getElementById("output");
+    const thicknessSlider = document.getElementById("thickness");
+
+    // Three.js init
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(400, 400);
+    document.getElementById("preview3D").appendChild(renderer.domElement);
+    const controls = new THREE.OrbitControls(cam, renderer.domElement);
+    cam.position.set(0, 0, 50);
+    controls.update();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, cam);
+    }
+    animate();
+
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            originalModel = JSON.parse(e.target.result);
+            output.textContent = JSON.stringify(originalModel, null, 2);
+          } catch (err) {
+            alert("Error al leer JSON");
+          }
+        };
+        reader.readAsText(file);
+      }
+    });
+
+    document.getElementById("generateBtn").addEventListener("click", () => {
+      if (!originalModel || !originalModel.elements) {
+        alert("Carga un modelo válido primero");
+        return;
+      }
+      const thickness = parseFloat(thicknessSlider.value);
+      outlineModel = JSON.parse(JSON.stringify(originalModel));
+      outlineModel.elements = outlineModel.elements.map(el => {
+        const center = [
+          (el.from[0] + el.to[0]) / 2,
+          (el.from[1] + el.to[1]) / 2,
+          (el.from[2] + el.to[2]) / 2
+        ];
+        const size = [
+          (el.to[0] - el.from[0]) * thickness,
+          (el.to[1] - el.from[1]) * thickness,
+          (el.to[2] - el.from[2]) * thickness
+        ];
+        return {
+          ...el,
+          from: [center[0] - size[0]/2, center[1] - size[1]/2, center[2] - size[2]/2],
+          to: [center[0] + size[0]/2, center[1] + size[1]/2, center[2] + size[2]/2]
+        };
+      });
+      output.textContent = JSON.stringify(outlineModel, null, 2);
+
+      // Preview 3D
+      scene.clear();
+      const geo = new THREE.BoxGeometry(16, 16, 16);
+      const mesh = new THREE.Mesh(geo, new THREE.MeshNormalMaterial({ wireframe: false }));
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), new THREE.LineBasicMaterial({ color: 0x00ffff }));
+      scene.add(mesh);
+      scene.add(edges);
+    });
+
+    document.getElementById("downloadZip").addEventListener("click", async () => {
+      if (!outlineModel) {
+        alert("Genera un outline primero");
+        return;
+      }
+      const zip = new JSZip();
+      zip.file("models/outline_model.json", JSON.stringify(outlineModel, null, 2));
+      zip.file("pack.mcmeta", JSON.stringify({
+        pack: {
+          pack_format: 15,
+          description: "Outline generado desde web MCC"
+        }
+      }, null, 2));
+      const blob = await zip.generateAsync({ type: "blob" });
+      saveAs(blob, "mcc_outline_pack.zip");
+    });
+  </script>
 </body>
 </html>
