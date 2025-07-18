@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Tienda MCC Style</title>
+    <title>MC Tournament</title>
     <style>
-        /* --- FUENTES Y ESTILOS GENERALES --- */
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Roboto:wght@400;700&display=swap');
+        /* --- FUENTES ESTILO MINECRAFT Y ESTILOS GENERALES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+        /* * 'Press Start 2P' para títulos (estilo arcade/pixel)
+         * 'VT323' para el texto normal (pixelado pero más legible)
+        */
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'VT323', monospace; /* Fuente pixelada para el cuerpo */
+            font-size: 20px; /* Aumentamos el tamaño base para legibilidad */
             margin: 0;
-            background-color: #1a1a2e; /* Un fondo oscuro para que los colores resalten */
-            color: #ffffff;
+            background-color: #0d1b2a; /* Azul oscuro y profundo de fondo */
+            color: #e0e1dd; /* Un blanco no tan puro para mejor lectura */
             overflow-x: hidden;
         }
 
@@ -22,38 +27,41 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 2rem;
-            background-color: #162447;
+            background-color: #1b263b; /* Azul un poco más claro que el fondo */
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            border-bottom: 4px solid #fca311; /* Borde dorado/naranja */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
         .navbar .logo {
-            font-family: 'Fredoka One', cursive;
-            font-size: 1.8rem;
-            color: #e43f5a;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.5rem;
+            color: #fca311; /* Color dorado/naranja */
+            text-shadow: 2px 2px 0px #000000; /* Sombra dura para efecto 8-bit */
         }
         
         /* Aquí puedes poner tu logo */
         .navbar .logo img {
-            width: 50px; /* Ajusta el tamaño de tu logo */
-            margin-right: 10px;
+            width: 50px;
+            margin-right: 15px;
             vertical-align: middle;
         }
 
         .nav-links a {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
             color: white;
             text-decoration: none;
             margin: 0 15px;
-            font-weight: 700;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .nav-links a:hover {
-            color: #1f4068;
+            color: #ffc300; /* Amarillo brillante al pasar el ratón */
+            transform: scale(1.1);
         }
 
         /* --- SECCIÓN DE BIENVENIDA --- */
@@ -63,159 +71,155 @@
             justify-content: center;
             text-align: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1f4068, #e43f5a, #1b1b2f);
+            background: linear-gradient(135deg, #0d1b2a, #415a77, #1b263b);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            padding-top: 60px; /* Para que no quede debajo del navbar */
+            padding: 80px 1rem 0; /* Espacio para el navbar */
         }
 
         .hero-content h1 {
-            font-family: 'Fredoka One', cursive;
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(2.5rem, 8vw, 4rem); /* Tamaño adaptable */
+            color: #FFD700; /* Dorado */
+            text-shadow: 4px 4px 0px #000000;
+            margin-bottom: 1rem;
         }
 
         .hero-content p {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 0px #000000;
+            margin-bottom: 2.5rem;
         }
 
         .cta-button {
-            background-color: #e43f5a;
-            color: white;
-            padding: 15px 30px;
+            font-family: 'Press Start 2P', cursive;
+            background-color: #fca311; /* Naranja */
+            color: #0d1b2a; /* Texto azul oscuro */
+            padding: 18px 35px;
             text-decoration: none;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: transform 0.3s, background-color 0.3s;
-            box-shadow: 0 4px 15px rgba(228, 63, 90, 0.5);
+            font-size: 1rem;
+            border-radius: 8px; /* Bordes más cuadrados */
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .cta-button:hover {
-            background-color: #ff4d6d;
-            transform: scale(1.1);
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000;
         }
 
         /* --- ESTILOS DE SECCIONES GENERALES --- */
         .section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
         }
 
         .section-title {
-            font-family: 'Fredoka One', cursive;
+            font-family: 'Press Start 2P', cursive;
             font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #e43f5a;
+            margin-bottom: 3rem;
+            color: #fca311;
+            text-shadow: 3px 3px 0px #000000;
         }
 
         /* --- SECCIÓN DE COSMÉTICOS --- */
         #cosmeticos {
-            background-color: #1b1b2f;
+            background-color: #0d1b2a;
         }
         
         .cosmetics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .cosmetic-item {
-            background-color: #162447;
-            border-radius: 15px;
+            background-color: #1b263b; /* Azul secundario */
+            border-radius: 8px;
             padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 4px solid #415a77; /* Borde azul más claro */
+            transition: transform 0.3s, border-color 0.3s;
         }
         
         .cosmetic-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(228, 63, 90, 0.3);
+            border-color: #fca311; /* Borde dorado al pasar el ratón */
         }
 
         .cosmetic-item img {
             max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            border: 3px solid #0d1b2a;
+            image-rendering: pixelated; /* Mantiene el estilo pixelado en imágenes */
         }
 
         .cosmetic-item h3 {
-            font-family: 'Fredoka One', cursive;
-            color: #e43f5a;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #ffc300; /* Amarillo */
+            margin-bottom: 0.5rem;
         }
 
         /* --- SECCIÓN DE MINIJUEGOS --- */
-        .minigames-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .minigame-card {
-            background: #162447;
-            border-radius: 15px;
-            width: 300px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.3s;
+        #minijuegos {
+            background-color: #1b263b; /* Fondo diferente para variar */
         }
         
-        .minigame-card:hover {
-            transform: scale(1.05);
-        }
-
-        .minigame-card .card-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-
-        .minigame-card .card-content {
+        /* Usamos la misma rejilla para consistencia */
+        .minigame-item {
+            background-color: #0d1b2a; /* Azul oscuro */
+            border-radius: 8px;
+            border: 4px solid #415a77;
             padding: 1.5rem;
-        }
-
-        .minigame-card h3 {
-            font-family: 'Fredoka One', cursive;
-            color: #1f4068;
-            margin-top: 0;
-            background-color: #e43f5a;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-        /* --- SECCIÓN DE "ACERCA DE" --- */
-        #acerca {
-            background-color: #1a1a2e;
+            transition: transform 0.3s, border-color 0.3s;
         }
         
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
+        .minigame-item:hover {
+            transform: translateY(-10px);
+            border-color: #3a86ff; /* Un azul brillante para el hover */
         }
 
+        .minigame-item img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            border: 3px solid #1b263b;
+            image-rendering: pixelated;
+        }
+
+        .minigame-item h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #3a86ff; /* Azul brillante */
+            margin-bottom: 0.5rem;
+        }
+        
         /* --- FOOTER --- */
         .footer {
-            background-color: #162447;
+            background-color: #1b263b;
             padding: 2rem;
             text-align: center;
-            color: #ffffff;
+            color: #e0e1dd;
+            border-top: 4px solid #fca311;
         }
         
         .social-links a {
             color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: color 0.3s;
+            margin: 0 15px;
+            font-size: 2rem;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-block; /* para que la transformación funcione bien */
         }
         
         .social-links a:hover {
-            color: #e43f5a;
+            color: #fca311;
+            transform: translateY(-5px);
         }
 
-        /* --- ANIMACIONES Y EFECTOS --- */
+        /* --- ANIMACIONES --- */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -228,78 +232,61 @@
 
     <nav class="navbar">
         <div class="logo">
-            TuTienda
+            MC Tournament
         </div>
         <div class="nav-links">
             <a href="#cosmeticos">Cosméticos</a>
             <a href="#minijuegos">Minijuegos</a>
-            <a href="#acerca">Nosotros</a>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
-            <h1>¡Bienvenido a Tu Universo!</h1>
-            <p>Donde la diversión y el estilo se encuentran.</p>
-            <a href="#cosmeticos" class="cta-button">Explora la Tienda</a>
+            <h1>MC TOURNAMENT</h1>
+            <p>El campo de batalla de los campeones.</p>
+            <a href="#cosmeticos" class="cta-button">Ver Tienda</a>
         </div>
     </header>
 
     <main>
         <section id="cosmeticos" class="section">
-            <h2 class="section-title">Cosméticos Increíbles ✨</h2>
+            <h2 class="section-title">COSMETICOS</h2>
             <div class="cosmetics-grid">
                 <div class="cosmetic-item">
-                    <img src="https://via.placeholder.com/300x200/e43f5a/ffffff?text=Capa+Estelar" alt="Cosmético 1">
-                    <h3>Capa Estelar</h3>
-                    <p>Una capa que brilla con la luz de mil galaxias. ¡Perfecta para destacar!</p>
+                    <img src="https://via.placeholder.com/300x200/fca311/0d1b2a?text=Corona+del+Rey" alt="Cosmético 1">
+                    <h3>Corona del Rey</h3>
+                    <p>Forjada en oro puro. Solo para los verdaderos soberanos del torneo.</p>
                 </div>
                 <div class="cosmetic-item">
-                    <img src="https://via.placeholder.com/300x200/1f4068/ffffff?text=Aura+Neón" alt="Cosmético 2">
-                    <h3>Aura de Neón</h3>
-                    <p>Rodéate de un aura vibrante que cambia de color. ¡Serás el centro de atención!</p>
+                    <img src="https://via.placeholder.com/300x200/3a86ff/ffffff?text=Alas+Celestes" alt="Cosmético 2">
+                    <h3>Alas Celestes</h3>
+                    <p>Unas alas etéreas que te darán un toque celestial en la arena.</p>
                 </div>
                 <div class="cosmetic-item">
-                    <img src="https://via.placeholder.com/300x200/ffa600/ffffff?text=Sombrero+Dorado" alt="Cosmético 3">
-                    <h3>Sombrero de Campeón</h3>
-                    <p>Un sombrero dorado para los verdaderos ganadores. ¡Demuestra quién manda!</p>
+                    <img src="https://via.placeholder.com/300x200/ffd700/0d1b2a?text=Hacha+Dorada" alt="Cosmético 3">
+                    <h3>Hacha de Batalla Dorada</h3>
+                    <p>No es solo una herramienta, es un símbolo de poder y victoria.</p>
                 </div>
             </div>
         </section>
 
         <section id="minijuegos" class="section">
-            <h2 class="section-title">Nuestros Minijuegos 🕹️</h2>
-            <div class="minigames-container">
-                <div class="minigame-card">
-                    <img src="https://via.placeholder.com/300x180/e43f5a/ffffff?text=Parkour+Frenzy" class="card-image" alt="Minijuego 1">
-                    <div class="card-content">
-                        <h3>Parkour Frenzy</h3>
-                        <p>¡Salta, corre y esquiva! Un desafío de parkour extremo solo para los más ágiles.</p>
-                    </div>
+            <h2 class="section-title">MINIJUEGOS</h2>
+            <div class="cosmetics-grid"> <div class="minigame-item">
+                    <img src="https://via.placeholder.com/300x200/3a86ff/ffffff?text=Sky+Wars" class="card-image" alt="Minijuego 1">
+                    <h3>Sky Wars</h3>
+                    <p>Lucha por la supervivencia en islas flotantes. ¡Que solo quede uno!</p>
                 </div>
-                <div class="minigame-card">
-                    <img src="https://via.placeholder.com/300x180/1f4068/ffffff?text=Block+Battles" class="card-image" alt="Minijuego 2">
-                    <div class="card-content">
-                        <h3>Block Battles</h3>
-                        <p>Construye tus defensas y lucha contra otros equipos en una batalla estratégica.</p>
-                    </div>
+                <div class="minigame-item">
+                    <img src="https://via.placeholder.com/300x200/fca311/0d1b2a?text=Build+Battle" class="card-image" alt="Minijuego 2">
+                    <h3>Build Battle</h3>
+                    <p>Demuestra tu creatividad y tus habilidades de construcción bajo presión.</p>
                 </div>
-                <div class="minigame-card">
-                    <img src="https://via.placeholder.com/300x180/ffa600/ffffff?text=Speed+Runners" class="card-image" alt="Minijuego 3">
-                    <div class="card-content">
-                        <h3>Speed Runners</h3>
-                        <p>¿Eres el más rápido? Compite en carreras llenas de obstáculos y power-ups.</p>
-                    </div>
+                <div class="minigame-item">
+                    <img src="https://via.placeholder.com/300x200/ffc300/0d1b2a?text=Gold+Rush" class="card-image" alt="Minijuego 3">
+                    <h3>Gold Rush</h3>
+                    <p>Una carrera frenética por recolectar la mayor cantidad de oro. ¡Velocidad y estrategia!</p>
                 </div>
-            </div>
-        </section>
-        
-        <section id="acerca" class="section">
-            <h2 class="section-title">¿Quiénes Somos? 🤔</h2>
-            <div class="about-content">
-                <p>
-                    ¡Hola! Somos un equipo apasionado por los videojuegos y las comunidades vibrantes. Inspirados por la creatividad y la emoción de eventos como MCC, hemos creado este espacio para que puedas encontrar los cosméticos más geniales y divertirte con minijuegos únicos. Nuestra misión es simple: ¡hacer que tu experiencia de juego sea más colorida y emocionante!
-                </p>
             </div>
         </section>
 
@@ -307,11 +294,11 @@
 
     <footer class="footer">
         <div class="social-links">
-            <a href="#" target="_blank">Twitter</a>
-            <a href="#" target="_blank">Discord</a>
-            <a href="#" target="_blank">YouTube</a>
+            <a href="#" target="_blank" title="Discord">👾</a>
+            <a href="#" target="_blank" title="Twitter">🐦</a>
+            <a href="#" target="_blank"title="YouTube">▶️</a>
         </div>
-        <p>&copy; 2025 TuTienda. Todos los derechos reservados.</p>
+        <p>&copy; 2025 MC Tournament. Creado con la energía de los campeones.</p>
     </footer>
 
     <script>
