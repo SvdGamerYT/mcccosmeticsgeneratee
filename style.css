@@ -1,77 +1,86 @@
-/* style.css */
+/* Configuración básica */
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
-  margin: 0;
-  padding: 0;
+    font-family: 'Playfair Display', serif; /* La fuente elegante de Google */
+    margin: 0;
+    background-color: #f0f0f0;
 }
 
-.container {
-  max-width: 800px;
-  margin: 50px auto;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+/* 1. Estilos de la Pantalla de Bienvenida (Splash) */
+#splash-screen {
+    position: fixed; /* Se queda fija y ocupa todo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* 100% de la altura de la pantalla */
+    background-color: #1a1a1a; /* Fondo oscuro y elegante */
+    color: white;
+    display: flex; /* Para centrar el contenido */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000; /* Se asegura de estar por encima de todo */
+    transition: opacity 1.5s ease; /* Transición suave al desaparecer */
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+/* 2. El texto con la animación de aparición */
+.texto-bienvenida {
+    /* Animación: "fadeInTexto" dura 3 segundos */
+    animation: fadeInTexto 3s ease-in-out;
 }
 
-input[type="file"] {
-  display: block;
-  margin: 20px auto;
+#splash-screen h1 {
+    font-size: 2.8rem;
+    margin: 0;
+    font-weight: normal;
+    font-style: italic;
 }
 
-.controls {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 20px;
+#splash-screen p {
+    font-size: 1.3rem;
+    color: #ccc; /* Un gris claro para la segunda línea */
+    font-style: italic;
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-weight: bold;
+/* 3. El botón de "Entrar" */
+#enter-button {
+    margin-top: 40px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif; /* Fuente simple para el botón */
+    background-color: white;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    /* Animación: Aparece 2.5s después de que la página carga */
+    opacity: 0; /* Empieza invisible */
+    animation: fadeInBoton 2s ease 2.5s forwards; /* 'forwards' lo mantiene visible */
 }
 
-button {
-  display: block;
-  margin: 0 auto;
-  padding: 12px 25px;
-  font-size: 1.1rem;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+#enter-button:hover {
+    background-color: #ddd;
 }
 
-button:hover {
-  transform: scale(1.05);
+/* 4. Contenido Principal (Oculto al inicio) */
+#contenido-principal {
+    display: none; /* Oculto por defecto */
+    padding: 20px;
+    text-align: center;
+    animation: fadeInTexto 2s ease; /* También aparece suavemente */
 }
 
-pre {
-  background: #1a202c;
-  padding: 20px;
-  border-radius: 10px;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  font-size: 0.9rem;
-  color: #e2e8f0;
-  margin-top: 20px;
+/* 5. Definición de las Animaciones (Keyframes) */
+
+/* Animación para el texto principal */
+@keyframes fadeInTexto {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-#thicknessValue {
-  margin-top: 8px;
-  color: #4ecdc4;
-  font-weight: bold;
+/* Animación para el botón */
+@keyframes fadeInBoton {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
